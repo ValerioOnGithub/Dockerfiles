@@ -10,7 +10,7 @@ RUN yum clean all
 RUN rm -v /etc/nginx/nginx.conf
 ADD configs/nginx.conf /etc/nginx
 
-VOLUME /etc/nginx/conf.d
+VOLUME /etc/nginx/conf.d/host.conf
 VOLUME /var/www
 
 EXPOSE 80
