@@ -1,0 +1,17 @@
+version: "3"
+services:
+  php:
+    build: ./docker/centos7-php7.1-remi
+
+  nginx:
+    build: ./docker/centos7-nginx
+    ports:
+      - '80:80'
+
+#  db:
+#    image: ---
+#    volumes:
+#      - db:/var/lib/mysql
+
+#volumes:
+#  db:
