@@ -31,4 +31,4 @@ RUN yum install -y \
 RUN yum clean all
 
 EXPOSE 9000
-CMD ["php-fpm"]
+CMD ["php-fpm", "--nodaemonize"]
