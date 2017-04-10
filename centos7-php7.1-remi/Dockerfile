@@ -31,5 +31,7 @@ RUN yum install -y \
 RUN yum clean all
 COPY ./configs/www.conf /etc/php-fpm.d/www.conf
 
+VOLUME /var/www
+
 EXPOSE 9000
 CMD ["php-fpm", "--nodaemonize"]
