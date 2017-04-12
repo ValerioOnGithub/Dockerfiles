@@ -21,3 +21,10 @@ redis:
     ports:
         - "6379:6379"
 
+mariadb:
+    image: "mariadb"
+    ports:
+        - "3306:3306"
+    environment:
+        - MYSQL_ROOT_PASSWORD={root_password}
+
