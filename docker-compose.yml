@@ -1,0 +1,23 @@
+web:
+    image: centos7-nginx
+    ports:
+        - "80:80"
+    volumes:
+        - "{path_to_project}:/var/www"
+        - "{path_to_host_conf}:/etc/nginx/conf.d/host.conf"
+    links:
+        - php
+
+php:
+    image: "centos7-php7.1-remi"
+    ports:
+        - "9000:9000"
+    volumes:
+        - "{path_to_project}:/var/www"
+    links:
+        - redis
+redis:
+    image: "centos/redis-32-centos7"
+    ports:
+        - "6379:6379"
+
