@@ -29,9 +29,14 @@ RUN yum install -y \
 		php-fpm \
 		composer
 RUN yum clean all
+
 COPY ./configs/www.conf /etc/php-fpm.d/www.conf
 
 VOLUME /var/www
 
+COPY docker-entrypoint.sh /
+RUN chmod +x /docker-entrypoint.sh
+
 EXPOSE 9000
-CMD ["php-fpm", "--nodaemonize"]
+
+ENTRYPOINT ["/docker-entrypoint.sh"]

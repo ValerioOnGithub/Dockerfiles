@@ -13,6 +13,9 @@ ADD configs/nginx.conf /etc/nginx
 VOLUME /etc/nginx/conf.d/host.conf
 VOLUME /var/www
 
+COPY docker-entrypoint.sh /
+RUN chmod +x /docker-entrypoint.sh
+
 EXPOSE 80
 
-CMD ["nginx", "-g", "daemon off;"]
+ENTRYPOINT ["/docker-entrypoint.sh"]
