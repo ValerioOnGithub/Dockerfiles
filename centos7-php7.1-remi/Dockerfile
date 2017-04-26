@@ -30,6 +30,11 @@ RUN yum install -y \
 		composer
 RUN yum clean all
 
+RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+RUN php composer-setup.php
+RUN php -r "unlink('composer-setup.php');"
+RUN mv composer.phar /usr/local/bin/composer
+
 COPY ./configs/www.conf /etc/php-fpm.d/www.conf
 
 VOLUME /var/www
