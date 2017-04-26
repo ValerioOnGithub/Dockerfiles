@@ -14,8 +14,6 @@ fi
 groupadd $PHP_FPM_GROUP
 useradd $PHP_FPM_USER -g $PHP_FPM_GROUP
 
-
-#TODO: change user in configs using sed
 sed -i -e "s/^user = .*/user = ${PHP_FPM_USER}/g" /etc/php-fpm.d/www.conf
 sed -i -e "s/^group = .*/user = ${PHP_FPM_GROUP}/g" /etc/php-fpm.d/www.conf
 
