@@ -13,8 +13,11 @@ ADD configs/nginx.conf /etc/nginx
 COPY docker-entrypoint.sh /
 RUN chmod +x /docker-entrypoint.sh
 
-VOLUME /etc/nginx/conf.d/host.conf
+#VOLUME /etc/nginx/conf.d/host.conf
 VOLUME /var/www
+
+RUN ln -sf /dev/stdout /var/log/nginx/access.log 
+RUN ln -sf /dev/stderr /var/log/nginx/error.log
 
 EXPOSE 80
 
