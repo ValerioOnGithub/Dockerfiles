@@ -3,7 +3,7 @@ web:
     ports:
         - "80:80"
     volumes:
-        - "./project:/var/www"
+        - ".:/var/www"
  #       - "/Users/Mac/Documents/projects/test/configs/nginx.conf:/etc/nginx/conf.d/host.conf"
     links:
         - php
@@ -13,7 +13,7 @@ php:
     ports:
         - "9000:9000"
     volumes:
-        - "./project:/var/www"
+        - ".:/var/www"
     links:
         - redis
         - mariadb
