@@ -19,4 +19,4 @@ useradd $NGINX_USER -g $NGINX_USER_GROUP
 
 sed -i -e "s/^user .*/user ${NGINX_USER};/g" /etc/nginx/nginx.conf
 
-nginx -g 'daemon off;'
+exec "$@"
