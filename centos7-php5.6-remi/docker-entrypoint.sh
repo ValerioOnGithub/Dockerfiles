@@ -1,22 +1,22 @@
 #!/bin/bash
-if [[ -z "${NGINX_USER}" ]]; then
-  NGINX_USER="www-data"
+if [[ -z "${PHP_FPM_USER}" ]]; then
+  PHP_FPM_USER="www-data"
 else
-  NGINX_USER="${NGINX_USER}"
+  PHP_FPM_USER="${PHP_FPM_USER}"
 fi
 
-if [[ -z "${NGINX_USER_GROUP}" ]]; then
-  NGINX_USER_GROUP="www-data"
+if [[ -z "${PHP_FPM_GROUP}" ]]; then
+  PHP_FPM_GROUP="www-data"
 else
-  NGINX_USER_GROUP="${NGINX_USER_GROUP}"
+  PHP_FPM_GROUP="${PHP_FPM_GROUP}"
 fi
 
-userdel $NGINX_USER
-groupdel $NGINX_USER_GROUP
+groupadd $PHP_FPM_GROUP
+useradd $PHP_FPM_USER -g $PHP_FPM_GROUP
 
-groupadd $NGINX_USER_GROUP
-useradd $NGINX_USER -g $NGINX_USER_GROUP
+chown -R $PHP_FPM_USER:$PHP_FPM_GROUP /var/lib/php/session
 
-sed -i -e "s/^user .*/user ${NGINX_USER};/g" /etc/nginx/nginx.conf
+sed -i -e "s/^user = .*/user = ${PHP_FPM_USER}/g" /etc/php-fpm.d/www.conf
+sed -i -e "s/^group = .*/user = ${PHP_FPM_GROUP}/g" /etc/php-fpm.d/www.conf
 
 exec "$@"
