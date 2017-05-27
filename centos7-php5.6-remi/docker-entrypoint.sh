@@ -14,8 +14,6 @@ fi
 groupadd $PHP_FPM_GROUP
 useradd $PHP_FPM_USER -g $PHP_FPM_GROUP
 
-chown -R $PHP_FPM_USER:$PHP_FPM_GROUP /var/lib/php/session
-
 sed -i -e "s/^user = .*/user = ${PHP_FPM_USER}/g" /etc/php-fpm.d/www.conf
 sed -i -e "s/^group = .*/user = ${PHP_FPM_GROUP}/g" /etc/php-fpm.d/www.conf
 
